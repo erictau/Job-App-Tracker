@@ -6,6 +6,7 @@
             <th>Company</th>
             <th>Job Title</th>
             <th>Location</th>
+            <th>Details</th>
         </thead>
         <tbody>
             <% if (jobApps.length) { %>
@@ -14,11 +15,12 @@
                 <td> <%= app.company %> </td>
                 <td> <%= app.jobTitle %> </td>
                 <td> <%= app.location %> </td>
+                <td> <a href="/jobapps/<%= app._id %>">Details</a></td>
             </tr>
             <% }) %>
             <% } else { %>
                 <tr>
-                    <td colspan="3" class="text-center">
+                    <td colspan="4" class="text-center">
                         No Job Applications Yet.
                     </td>
                 </tr>
