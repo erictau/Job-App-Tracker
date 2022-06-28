@@ -1,7 +1,7 @@
 <%- include('../partials/header') %>
 
 <div class="container">
-
+<!-- JOB DETAILS CARD -->
     <div class="card mt-5">
       <div class="card-header">
         Job Details
@@ -16,6 +16,7 @@
       </div>
     </div>
 
+<!-- APPLICATION DETAILS CARD -->
     <div class="card mt-5">
       <div class="card-header">
         Application Details
@@ -58,14 +59,15 @@
       </div>
     </div>
 
+<!-- TASKS CARD -->
     <div class="card mt-5">
         <div class="card-header">
           Tasks
         </div>
-        <div class="card-body d-flex">
-
-
-          <div class="card task-card mt-2">
+        <div class="card-body d-flex flex-wrap">
+          
+          <!-- ADD TASKS -->
+          <div class="card task-card m-2">
             <div class="card-body">
                 <h5 class="card-title">Add Tasks</h5>
                 <form action="/jobapps/<%= jobApp._id %>/tasks" method="POST">
@@ -103,18 +105,23 @@
             </div>
           </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
+          <!-- INDIVIDUAL CARDS FOR EACH TASK -->
+          <% jobApp.tasks.forEach(task => { %>
+            <div class="card task-card m-2">
+              <div class="card-body d-flex">
+                <form action="/jobapps/<%= jobApp._id %>/tasks" method="POST">
+                  <h5 class="card-title"> <%= task.description %> </h5>
+                  <p class="card-text">Due Date: <%- task.dueDate ? task.dueDate.toLocaleDateString('en-US', { timeZone: 'UTC' }) : 'N/A' %></p>
+                  <p class="card-text">Status: <%= task.status %></p>
+                  <p class="card-text">Priority: <%= task.priority %></p>                    
+                  <button type="submit" class="btn btn-primary btn-sm">Update Task</button>
+                </form>
+                <form action="/jobapps/<%= jobApp._id %>/tasks/<%= task._id %>?_method=DELETE" method="POST">
+                  <button type="submit" class="btn btn-danger btn-sm">Delete Task</button>    
+                </form>
+              </div>
+            </div>
+          <% }) %>
 
         </div>
       </div>

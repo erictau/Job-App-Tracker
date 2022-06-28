@@ -19,6 +19,7 @@ const methodOverride = require('method-override');
 // REQUIRE ROUTERS
 var indexRouter = require('./routes/index');
 var jobAppsRouter = require('./routes/jobapps');
+const tasksRouter = require('./routes/tasks');
 
 var app = express();
 
@@ -51,6 +52,7 @@ app.use(methodOverride('_method'));
 // MOUNT ROUTER MIDDLWARE
 app.use('/', indexRouter);
 app.use('/jobapps', jobAppsRouter);
+app.use('/', tasksRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
