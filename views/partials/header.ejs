@@ -32,10 +32,10 @@
             <div class="collapse navbar-collapse d-flex justify-content-between" id="navbarNavAltMarkup">
                 <% if (user) { %>
                     <div class="navbar-nav">
-                        <a class="nav-link" href="/">Home</a>
-                        <a class="nav-link" href="/jobapps">Job Applications</a>
-                        <a class="nav-link" href="/jobapps/new">Add New Job App</a>
-                        <a class="nav-link" href="#">Tasks</a>
+                        <a class="nav-link <%- title === 'Home' ? 'active' : '' %>" href="/">Home</a>
+                        <a class="nav-link <%- title === 'Job Applications' ? 'active' : '' %>" href="/jobapps">Job Applications</a>
+                        <a class="nav-link <%- title === 'New Job App' ? 'active' : '' %>" href="/jobapps/new">Add New Job App</a>
+                        <a class="nav-link <%- title === 'Tasks' ? 'active' : '' %>" href="#">Tasks</a>
                         <form class="d-flex" role="search">
                             <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
                             <button class="btn btn-outline-success" type="submit">Search</button>

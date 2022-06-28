@@ -4,8 +4,14 @@ const Schema = mongoose.Schema;
 const taskSchema = new Schema({
     description: String,
     dueDate: Date,
-    status: {enum:['To Do', 'In Progress', 'Complete']},
-    priority: {enum:['Low', 'Med', 'High']},
+    status: {
+        type: String,
+        enum:['To Do', 'In Progress', 'Complete']
+    },
+    priority: {
+        type: String,
+        enum:['Low', 'Med', 'High']
+    },
 }, {
     timestamps: true
 })
@@ -27,15 +33,22 @@ const jobAppSchema = new Schema({
     jobTitle: String,
     location: String,
     company: String,
-    status: {enum: ['Interested', 'Applied', 'Rejected', 'In Conversations', 'Interview Scheduled', 'Offered']},
-    interestLevel: {enum: ['Low', 'Med', 'High']},
+    status: {
+        type: String,
+        enum: ['Interested', 'Applied', 'Rejected', 'In Conversations', 'Interview Scheduled', 'Offered']
+    },
+    interestLevel: {
+        type: String,
+        enum: ['Low', 'Med', 'High']
+    },
     contact: [contactSchema],
     resumeVersion: String,
     coverLetterVersion: String,
+    sentDate: Date,
     postingLink: String,
     notes: String,
 }, {
     timestamps: true
 })
 
-module.exports = mongoose.model('Job App', jobAppSchema)
+module.exports = mongoose.model('JobApp', jobAppSchema)

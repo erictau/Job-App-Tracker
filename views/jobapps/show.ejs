@@ -1,16 +1,121 @@
 <%- include('../partials/header') %>
 
 <div class="container">
-    <%= jobApp.company %>
-    <%= jobApp.jobTitle %>
-    <div class="card">
+
+    <div class="card mt-5">
+      <div class="card-header">
+        Job Details
+      </div>
+      <div class="card-body">
+        <h5 class="card-title"><%= jobApp.company %> - <%= jobApp.jobTitle %></h5>
+        <p class="card-text">Location: <%= jobApp.location %></p>
+        <p class="card-text">Interest Level: <%= jobApp.interestLevel %></p>
+        <p class="card-text">Status: <%= jobApp.status %></p>
+        <p class="card-text">Notes: <%= jobApp.notes %></p>
+        <p class="card-text"><a class="btn btn-secondary" href="<%= jobApp.postingLink %>">Job Posting Link</a></p>
+      </div>
+    </div>
+
+    <div class="card mt-5">
+      <div class="card-header">
+        Application Details
+      </div>
+      <div class="card-body">
+        <form action="/jobapps/<%= jobApp._id %>?_method=PUT" method="POST">
+        
+          <% if (jobApp.resumeVersion) { %>
+            <p class="card-text">Resume Version Sent: <%= jobApp.resumeVersion %></p>
+          <% } else { %>
+            <div class="form-floating mb-3">
+              <input class="form-control" type="text" name="resumeVersion" id="resumeVersion" autocomplete="off">
+              <label for="resumeVersion">Resume Link</label>
+            </div>
+          <% } %>
+
+          <% if (jobApp.coverLetterVersion) { %>
+            <p class="card-text">Cover Letter Version Sent: <%= jobApp.coverLetterVersion %></p>
+          <% } else { %>
+            <div class="form-floating mb-3">
+              <input class="form-control" type="text" name="coverLetterVersion" id="coverLetterVersion" autocomplete="off">
+              <label for="coverLetterVersion">Cover Letter Link</label>
+            </div>
+          <% } %>
+
+          <% if (jobApp.sentDate) { %>
+            <p class="card-text">Date Sent: <%= jobApp.sentDate.toLocaleDateString('en-US', { timeZone: 'UTC' }) %></p>
+          <% } else { %>
+            <div class="form-floating mb-3">
+              <input class="form-control" type="date" name="sentDate" id="sentDate" value="<%= currDateString %>" autocomplete="off">
+              <label for="sentDate">Date Sent:</label>
+            </div>
+          <% } %>
+
+          <% if (!(jobApp.resumeVersion && jobApp.coverLetterVersion && jobApp.sentDate)) { %> 
+            <button class="btn btn-primary" type="submit">Submit</button>
+          <% } %>
+
+        </form>
+      </div>
+    </div>
+
+    <div class="card mt-5">
         <div class="card-header">
-          Task
+          Tasks
         </div>
-        <div class="card-body">
-          <h5 class="card-title">Special title treatment</h5>
-          <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-          <a href="#" class="btn btn-primary">Go somewhere</a>
+        <div class="card-body d-flex">
+
+
+          <div class="card task-card mt-2">
+            <div class="card-body">
+                <h5 class="card-title">Add Tasks</h5>
+                <form action="/jobapps/<%= jobApp._id %>/tasks" method="POST">
+                  
+                  <div class="form-floating mb-3">
+                    <textarea class="form-control" name="description" id="description" required></textarea>
+                    <label for="description">Task Description</label>
+                  </div>
+                  
+                  <div class="form-floating mb-3">
+                    <input class="form-control" type="date" name="dueDate" id="dueDate">
+                    <label for="dueDate">Due Date</label>
+                  </div>
+
+                  <div class="form-floating mb-3">
+                    <select class="form-control" name="status" id="status">
+                      <option value="To Do">To Do</option>
+                      <option value="In Progress">In Progress</option>
+                      <option value="Complete">Complete</option>
+                    </select>
+                    <label for="status">Status</label>
+                  </div>
+
+                  <div class="form-floating mb-3">
+                    <select class="form-control" name="priority" id="priority">
+                      <option value="Low">Low</option>
+                      <option value="Med">Med</option>
+                      <option value="High">High</option>
+                    </select>
+                    <label for="priority">Priority</label>
+                  </div>
+
+                    <button type="submit" class="btn btn-primary btn-sm">Add Task</button>
+                </form>
+            </div>
+          </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         </div>
       </div>
 </div>
