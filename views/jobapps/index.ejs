@@ -1,0 +1,30 @@
+<%- include('../partials/header') %>
+
+<div class="container">
+    <table class="table mt-3">
+        <thead class="text-center">
+            <th>Company</th>
+            <th>Job Title</th>
+            <th>Location</th>
+        </thead>
+        <tbody>
+            <% if (jobApps.length) { %>
+            <% jobApps.forEach(app => { %>
+            <tr>
+                <td> <%= app.company %> </td>
+                <td> <%= app.jobTitle %> </td>
+                <td> <%= app.location %> </td>
+            </tr>
+            <% }) %>
+            <% } else { %>
+                <tr>
+                    <td colspan="3" class="text-center">
+                        No Job Applications Yet.
+                    </td>
+                </tr>
+            <% } %>
+        </tbody>
+    </table>
+</div>
+
+<%- include('../partials/footer') %>

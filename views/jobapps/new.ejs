@@ -1,0 +1,52 @@
+<%- include('../partials/header') %>
+
+
+<div class="container mt-5">
+    <h2 class="text-center">Add New Job App</h2>
+    <form class="form-control" action="/jobapps" method="post">
+        <div class="form-floating mb-3">
+            <input type="text" class="form-control" id="company" name="company" autocomplete="off" required>
+            <label for="company">Company</label>
+        </div>
+        <div class="form-floating mb-3">
+            <input type="text" class="form-control" id="jobTitle" name="jobTitle" autocomplete="off" required>
+            <label for="jobTitle">Job Title</label>
+        </div>
+        <div class="form-floating mb-3">
+            <input type="text" class="form-control" id="location" name="location" autocomplete="off" required>
+            <label for="location">Location</label>
+        </div>
+        <div class="form-floating mb-3">
+            <input type="text" class="form-control" id="postingLink" name="postingLink" autocomplete="off" required>
+            <label for="postingLink">Job Posting URL</label>
+        </div>
+        <div class="form-floating mb-3">
+            <textarea class="form-control" id="notes" name="notes" autocomplete="off"></textarea>
+            <label for="notes">Notes</label>
+        </div>
+        <div class="form-floating mb-3">
+            <select class="form-control" id="status" name="status">
+                <option value="Interested">Interested</option>
+                <option value="Applied">Applied</option>
+                <option value="Rejected">Rejected</option>
+                <option value="In Conversations">In Conversations</option>
+                <option value="Interview Scheduled">Interview Scheduled</option>
+                <option value="Offered">Offered</option>
+            </select> 
+            <label for="status">Status</label>
+        </div>
+        <div class="form-floating mb-3">
+            <select class="form-control" id="interestLevel" name="interestLevel">
+                <option value="Low">Low</option>
+                <option value="Med">Med</option>
+                <option value="High">High</option>
+            </select> 
+            <label for="interestLevel">Interest Level</label>
+        </div>
+
+
+        <button type="submit" class="btn btn-primary">Add Job App</button>
+    </form>
+</div>
+
+<%- include('../partials/footer') %>

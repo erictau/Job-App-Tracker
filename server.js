@@ -3,9 +3,22 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+const session = require('express-session');
+const passport = require('passport');
+require('dotenv').config();
 
+// CONNECT TO DATABASE
+require('./config/database');
+
+// AUTHENTICATION
+require('./config/passport');
+
+// ADD'L PACKAGES
+const methodOverride = require('method-override');
+
+// REQUIRE ROUTERS
 var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+var jobappsRouter = require('./routes/jobapps');
 
 var app = express();
 
@@ -13,14 +26,31 @@ var app = express();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
+// MIDDLEWARE PIPELINE
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+// ADD'L MIDDLEWARE
+app.use(session({
+  secret: process.env.SECRET,
+  resave: false,
+  saveUninitialized: true
+}));
+app.use(passport.initialize());
+app.use(passport.session());
+app.use(function(req, res, next) {
+  res.locals.user = req.user;
+  next();
+});
+
+app.use(methodOverride('_method'));
+
+// MOUNT ROUTER MIDDLWARE
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
+app.use('/jobapps', jobappsRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
