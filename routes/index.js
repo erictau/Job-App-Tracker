@@ -4,7 +4,11 @@ const passport = require('passport');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
+  if (req.user) {
+    res.redirect('/jobapps')
+  } else {
   res.render('index', { title: 'Home'});
+  }
 });
 
 // Login/Authentication

@@ -20,6 +20,7 @@ const methodOverride = require('method-override');
 var indexRouter = require('./routes/index');
 var jobAppsRouter = require('./routes/jobapps');
 const tasksRouter = require('./routes/tasks');
+const contactsRouter = require('./routes/contacts');
 
 var app = express();
 
@@ -53,6 +54,7 @@ app.use(methodOverride('_method'));
 app.use('/', indexRouter);
 app.use('/jobapps', jobAppsRouter);
 app.use('/', tasksRouter);
+app.use('/', contactsRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

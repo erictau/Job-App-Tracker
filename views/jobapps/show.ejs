@@ -72,8 +72,8 @@
           <% if (jobApp.contact) { %> 
             <p class="card-text">Name: <%= jobApp.contact.name %></p>  
             <p class="card-text">Title: <%= jobApp.contact.title %></p>
-            <p class="card-text">Phone Number: <%= jobApp.contact.phone %></p>
-            <p class="card-text">Email: <%= jobApp.contact.email %></p>
+            <p class="card-text">Phone Number: <%= jobApp.contact.phoneNumber %></p>
+            <p class="card-text">Email: <%= jobApp.contact.emailAddress %></p>
           <% } else { %>
             <div class="form-floating mb-3">
               <input type="text" class="form-control" name="name" id="name" required>
@@ -86,13 +86,13 @@
             </div>
 
             <div class="form-floating mb-3">
-              <input type="text" class="form-control" name="phone" id="phone" required>
-              <label for="phone">Phone Number</label>
+              <input type="text" class="form-control" name="phoneNumber" id="phoneNumber" required>
+              <label for="phoneNumber">Phone Number</label>
             </div>
             
             <div class="form-floating mb-3">
-              <input type="email" class="form-control" name="email" id="email" required>
-              <label for="email">Email</label>
+              <input type="email" class="form-control" name="emailAddress" id="emailAddress" required>
+              <label for="emailAddress">Email</label>
             </div>
 
             <button type="submit" class="btn btn-primary btn-sm">Add Contact Info</button>
