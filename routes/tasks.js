@@ -5,7 +5,8 @@ const isLoggedIn = require('../config/auth');
 
 
 router.post('/jobapps/:id/tasks', isLoggedIn, tasksCtrl.create);
-router.delete('/jobapps/:jobId/tasks/:taskId', isLoggedIn, tasksCtrl.delete);
+router.delete('/tasks/:taskId', isLoggedIn, tasksCtrl.delete);
+router.put('/tasks/:taskId', isLoggedIn, tasksCtrl.update);
 
 
 module.exports = router;

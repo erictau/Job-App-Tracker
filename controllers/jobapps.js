@@ -31,22 +31,23 @@ function newApp(req, res) {
 function create(req, res) {
     req.body.userId = req.user._id;
     console.log(req.body)
-    JobApp.create(req.body);
-    res.redirect('/jobapps');
+    JobApp.create(req.body)
+    .then(() => res.redirect('/jobapps'))
 }
 
 function show(req, res) {
+    function convertDateString(date) {
+        date = new Date(date.toLocaleDateString('en-US', {timeZone: 'UTC'}))
+        return date.getFullYear() + '-'
+        + ('0' + (date.getMonth() + 1)).slice(-2) + '-'
+        + ('0' + date.getDate()).slice(-2)
+    }
     JobApp.findById(req.params.id)
-    .then(jobApp => {
-        let currDate = new Date();
-        let currDateString = currDate.getFullYear() + '-'
-        + ('0' + (currDate.getMonth() + 1)).slice(-2) + '-'
-        + ('0' + currDate.getDate()).slice(-2)
-            
+    .then(jobApp => {            
         res.render('jobapps/show', {
             title: 'Detail Page',
             jobApp,
-            currDateString
+            convertDateString
         })
     })
 }
