@@ -41,7 +41,7 @@ const jobAppSchema = new Schema({
         type: String,
         enum: ['Low', 'Med', 'High']
     },
-    contact: [contactSchema],
+    contact: contactSchema,
     resumeVersion: String,
     coverLetterVersion: String,
     sentDate: Date,
