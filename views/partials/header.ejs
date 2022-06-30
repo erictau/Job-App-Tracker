@@ -29,23 +29,21 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             
-            <div class="collapse navbar-collapse d-flex justify-content-between" id="navbarNavAltMarkup">
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <% if (user) { %>
                     <div class="navbar-nav">
                         <a class="nav-link <%- title === 'Home' ? 'active' : '' %>" href="/">Home</a>
                         <a class="nav-link <%- title === 'Job Applications' ? 'active' : '' %>" href="/jobapps">Job Applications</a>
                         <a class="nav-link <%- title === 'New Job App' ? 'active' : '' %>" href="/jobapps/new">Add New Job App</a>
                         <a class="nav-link <%- title === 'Upcoming Tasks' ? 'active' : '' %>" href="/tasks">Upcoming Tasks</a>
-                    </div>
-                    <div class="navbar-nav">
-                        <img class="avatar" src="<%= user.avatar %>">
-                        <a class="nav-link" href="/logout">Logout</a>
+                        <div id="logout" class="navbar-right">
+                            <img class="avatar" src="<%= user.avatar %>">
+                            <a class="nav-link" href="/logout">Logout</a>
+                        </div>
                     </div>
                 <% } else { %>
                     <div class="navbar-nav">
-                    </div>
-                    <div class="navbar-nav">
-                        <a class="nav-link" href="/auth/google">Login</a>
+                        <a class="nav-link navbar-right" id="login" href="/auth/google">Login</a>
                     </div>
                 <% } %>
             </div>
