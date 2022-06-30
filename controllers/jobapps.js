@@ -1,4 +1,5 @@
 const JobApp = require('../models/jobapp');
+const DateUtil = require('../utils/dateutils');
 
 module.exports = {
     index,
@@ -36,18 +37,12 @@ function create(req, res) {
 }
 
 function show(req, res) {
-    function convertDateString(date) {
-        date = new Date(date.toLocaleDateString('en-US', {timeZone: 'UTC'}))
-        return date.getFullYear() + '-'
-        + ('0' + (date.getMonth() + 1)).slice(-2) + '-'
-        + ('0' + date.getDate()).slice(-2)
-    }
     JobApp.findById(req.params.id)
     .then(jobApp => {            
         res.render('jobapps/show', {
             title: 'Detail Page',
             jobApp,
-            convertDateString
+            convertDateString: DateUtil.convertDateString
         })
     })
 }

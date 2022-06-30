@@ -1,4 +1,5 @@
 const JobApp = require('../models/jobapp');
+const DateUtil = require('../utils/dateutils');
 
 module.exports = {
     index,
@@ -12,12 +13,6 @@ function index(req, res) {
     // Create date 1 week from today's date to query for tasks that are due within 1 week.
     let date = new Date();
     let urgentDate = new Date(date.getFullYear(), date.getMonth(), date.getDate() + 7);
-    function convertDateString(date) {
-        date = new Date(date.toLocaleDateString('en-US', {timeZone: 'UTC'}))
-        return date.getFullYear() + '-'
-        + ('0' + (date.getMonth() + 1)).slice(-2) + '-'
-        + ('0' + date.getDate()).slice(-2)
-    }
     // Only grabs the job apps that have tasks with due dates within 1 week.
     JobApp.find({
         'tasks.dueDate': {$lt: urgentDate}
@@ -30,7 +25,7 @@ function index(req, res) {
                 date,
                 urgentDate
             },
-            convertDateString
+            convertDateString: DateUtil.convertDateString
         })
     })
 }
