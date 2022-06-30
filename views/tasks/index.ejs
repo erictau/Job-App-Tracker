@@ -1,0 +1,91 @@
+<%- include('../partials/header') %>
+
+<div class="container">
+    <!-- Each Job App with tasks meeting the requirements will get a card -->
+    <% jobApps.forEach(jobApp => { %>
+        <div class="card m-2">
+            <div class="card-header">
+                <%= `${jobApp.company} - ${jobApp.jobTitle}` %>
+            </div>
+          <div class="card-body d-flex flex-column">
+
+            <table class="table">
+                <thead>
+                    <th>
+                        Task
+                    </th>
+                    <th>
+                        Due Date
+                    </th>
+                    <th>
+                        Status
+                    </th>
+                    <th>
+                        Priority
+                    </th>
+                    <th>
+                        Update
+                    </th>
+                    <th>
+                        Delete
+                    </th>
+                </thead>
+                <tbody>
+            <% const urgentTasks = jobApp.tasks.filter(task => task.dueDate < dates.urgentDate) %>
+            <% urgentTasks.forEach(task => { %>
+            <form action="/tasks/<%= task._id %>?_method=PUT" method="POST">
+                <tr>
+                    <td>
+                        <h5 class="card-title"> <%= task.description %> </h5>
+                    </td>
+                    <td>
+                        <div class="form-floating mb-3">
+                            <input class="form-control" type="date" name="dueDate" id="dueDate" value="<%= convertDateString(task.dueDate) %>">
+                            <label for="dueDate">Due Date</label>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="form-floating mb-3">
+                            <select class="form-control" name="status" id="status">
+                                <option value="To Do" <%= task.status === "To Do" ? "selected" : "" %> >To Do</option>
+                                <option value="In Progress" <%= task.status === "In Progress" ? "selected" : "" %> >In Progress</option>
+                                <option value="Complete" <%= task.status === "Complete" ? "selected" : "" %> >Complete</option>
+                            </select>
+                            <label for="status">Status:</label>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="form-floating mb-3">
+                            <select class="form-control" name="priority" id="priority">
+                                <option value="Low" <%= task.priority === "Low" ? "selected" : "" %> >Low</option>
+                                <option value="Med" <%= task.priority === "Med" ? "selected" : "" %> >Med</option>
+                                <option value="High" <%= task.priority === "High" ? "selected" : "" %> >High</option>
+                            </select>
+                            <label for="priority">Priority:</label>
+                        </div>
+                    </td>
+                    <td>
+                        <button type="submit" class="btn btn-secondary btn-sm mt-2">Update Task</button>
+
+                    </td>
+                </form>
+                    <td>
+                        <form action="/tasks/<%= task._id %>?_method=DELETE" method="POST">
+                          <button type="submit" class="btn btn-danger btn-sm mt-2">Delete Task</button>    
+                        </form>
+                    </td>
+                </tr>
+                
+                <% }) %>
+            </tbody>
+        </table>
+          </div>
+        </div>
+      <% }) %>
+    <!-- Within each job app card, each individual task will be listed out with description, due date, priority, and status. -->
+
+</div>
+
+
+
+<%- include('../partials/footer') %>
