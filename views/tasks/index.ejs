@@ -1,7 +1,11 @@
 <%- include('../partials/header') %>
 
 <div class="container mt-3">
-    <h4 class="text-center">All tasks due on or before <%= dates.urgentDate.toLocaleDateString('en-US', { timeZone: 'UTC' }) %> are listed here.</h4>
+    <% if (jobApps.length) { %>
+        <h4 class="text-center">All tasks due on or before <%= dates.urgentDate.toLocaleDateString('en-US', { timeZone: 'UTC' }) %> are listed here.</h4>
+    <% } else { %>
+        <h4 class="text-center">No tasks due on or before <%= dates.urgentDate.toLocaleDateString('en-US', { timeZone: 'UTC' }) %>.</h4>
+    <% } %>
     <!-- Each Job App with tasks meeting the requirements will get a card -->
     <% jobApps.forEach(jobApp => { %>
         <div class="card m-2 mt-3">

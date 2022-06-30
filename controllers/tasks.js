@@ -15,7 +15,8 @@ function index(req, res) {
     let urgentDate = new Date(date.getFullYear(), date.getMonth(), date.getDate() + 7);
     // Only grabs the job apps that have tasks with due dates within 1 week.
     JobApp.find({
-        'tasks.dueDate': {$lt: urgentDate}
+        'tasks.dueDate': {$lt: urgentDate}, 
+        userId: req.user._id
     })
     .then((jobApps) => {
         res.render('tasks/index', {
