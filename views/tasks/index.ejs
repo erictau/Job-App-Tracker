@@ -1,15 +1,22 @@
 <%- include('../partials/header') %>
 
-<div class="container">
+<div class="container mt-3">
+    <h4 class="text-center">All tasks due on or before <%= dates.urgentDate.toLocaleDateString('en-US', { timeZone: 'UTC' }) %> are listed here.</h4>
     <!-- Each Job App with tasks meeting the requirements will get a card -->
     <% jobApps.forEach(jobApp => { %>
-        <div class="card m-2">
+        <div class="card m-2 mt-3">
             <div class="card-header">
                 <%= `${jobApp.company} - ${jobApp.jobTitle}` %>
             </div>
           <div class="card-body d-flex flex-column">
 
-            <table class="table">
+            <table class="table table-sm table-hover text-center table-tasks">
+                <col class="column-task">
+                <col class="column-due-date">
+                <col class="column-status">
+                <col class="column-priority">
+                <col class="column-update">
+                <col class="column-delete">
                 <thead>
                     <th>
                         Task
@@ -36,42 +43,32 @@
             <form action="/tasks/<%= task._id %>?_method=PUT" method="POST">
                 <tr>
                     <td>
-                        <h5 class="card-title"> <%= task.description %> </h5>
+                        <h6> <%= task.description %> </h6>
                     </td>
                     <td>
-                        <div class="form-floating mb-3">
-                            <input class="form-control" type="date" name="dueDate" id="dueDate" value="<%= convertDateString(task.dueDate) %>">
-                            <label for="dueDate">Due Date</label>
-                        </div>
+                        <input class="form-control in-place-forms" type="date" name="dueDate" id="dueDate" value="<%= convertDateString(task.dueDate) %>">
                     </td>
                     <td>
-                        <div class="form-floating mb-3">
-                            <select class="form-control" name="status" id="status">
-                                <option value="To Do" <%= task.status === "To Do" ? "selected" : "" %> >To Do</option>
-                                <option value="In Progress" <%= task.status === "In Progress" ? "selected" : "" %> >In Progress</option>
-                                <option value="Complete" <%= task.status === "Complete" ? "selected" : "" %> >Complete</option>
-                            </select>
-                            <label for="status">Status:</label>
-                        </div>
+                        <select class="form-control in-place-forms" name="status" id="status">
+                            <option value="To Do" <%= task.status === "To Do" ? "selected" : "" %> >To Do</option>
+                            <option value="In Progress" <%= task.status === "In Progress" ? "selected" : "" %> >In Progress</option>
+                            <option value="Complete" <%= task.status === "Complete" ? "selected" : "" %> >Complete</option>
+                        </select>
                     </td>
                     <td>
-                        <div class="form-floating mb-3">
-                            <select class="form-control" name="priority" id="priority">
-                                <option value="Low" <%= task.priority === "Low" ? "selected" : "" %> >Low</option>
-                                <option value="Med" <%= task.priority === "Med" ? "selected" : "" %> >Med</option>
-                                <option value="High" <%= task.priority === "High" ? "selected" : "" %> >High</option>
-                            </select>
-                            <label for="priority">Priority:</label>
-                        </div>
+                        <select class="form-control in-place-forms" name="priority" id="priority">
+                            <option value="Low" <%= task.priority === "Low" ? "selected" : "" %> >Low</option>
+                            <option value="Med" <%= task.priority === "Med" ? "selected" : "" %> >Med</option>
+                            <option value="High" <%= task.priority === "High" ? "selected" : "" %> >High</option>
+                        </select>
                     </td>
                     <td>
-                        <button type="submit" class="btn btn-secondary btn-sm mt-2">Update Task</button>
-
+                        <button type="submit" class="btn btn-secondary">Update</button>
                     </td>
                 </form>
                     <td>
                         <form action="/tasks/<%= task._id %>?_method=DELETE" method="POST">
-                          <button type="submit" class="btn btn-danger btn-sm mt-2">Delete Task</button>    
+                          <button type="submit" class="btn btn-danger">X</button>    
                         </form>
                     </td>
                 </tr>

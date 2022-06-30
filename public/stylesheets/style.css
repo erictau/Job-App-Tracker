@@ -1,3 +1,4 @@
+
 .task-card {
     width: 275px;
     height: 390px;
@@ -18,3 +19,52 @@
     border: 0;
     box-shadow: none;
 }
+
+.welcome-card {
+    min-width: 300px;
+    min-height: 300px;
+    position: relative;
+    top: 100px;
+}
+
+.in-place-forms {
+    max-width: 150px;
+}
+
+
+.table-tasks td {
+    text-align: center;
+    vertical-align: middle;
+    margin: auto;
+}
+
+.table-tasks td input, .table-tasks td select {
+    text-align: center;
+    margin: auto;
+}
+
+
+/* Task table columns */
+.column-task {
+    width: 40%;
+}
+.column-due-date {
+    min-width: 10%;
+    max-width: 15%;
+}
+.column-status {
+    min-width: 10%;
+    max-width: 15%;
+}
+.column-priority {
+    min-width: 10%;
+    max-width: 15%;
+}
+.column-update {
+    max-width: 5%;
+}
+.column-delete {
+    max-width: 5%;
+}
+
+/* End of Task table columns */

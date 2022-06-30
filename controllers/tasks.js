@@ -57,6 +57,6 @@ function update(req, res) {
             task[property] = req.body[property];
         }
         jobApp.save()
-        .then(() => res.redirect(`/jobapps/${jobApp._id}`));
+        .then(() => res.redirect('back'));
     })
 }
