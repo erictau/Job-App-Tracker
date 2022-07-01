@@ -2,7 +2,7 @@
 
 ## Background
 <p>
-    This Job Application Tracker is a web application that helps job seekers manage the job application process. Users can create new job application entries, add contact information, save links to resumes and cover letters that were sent, and create tasks.
+    This Job Application Tracker is a full stack web application that helps job seekers manage the job application process. Users can create new job application entries, add contact information, save links to resumes and cover letters that were sent, and create tasks.
 </p>
 
 ## Application Architecture
@@ -16,9 +16,10 @@
 </p>
 
 ## Technologies Used
-<p>
-    Technologies used in this project: HTML5, CSS3, Bootstrap, JavaScript, Node.js, Express.js, EJS View Engine, MongoDB, Mongoose, and OAuth 2.0 (Google Strategy).
-</p>
+<p>The application is deployed via Heroku. Data is stored via MongoDB Atlas (cloud).</p>
+<p>Front End Technologies: HTML5, CSS3, Bootstrap, JavaScript, EJS View Engine</p>
+<p>Back End Technologies: Node.js, Express.js, MongoDB, Mongoose, and OAuth 2.0 (Google Strategy)</p>
+
 
 # Getting Started
 
