@@ -2,31 +2,40 @@
 
 ## Background
 <p>
-    This Job Application Tracker is a web application that helps job seekers manage the job application process. Users can create new job application entries, add contact information, save links to resumes and cover letters that were sent, and create tasks. 
+    This Job Application Tracker is a web application that helps job seekers manage the job application process. Users can create new job application entries, add contact information, save links to resumes and cover letters that were sent, and create tasks.
+</p>
+
+## Application Architecture
+<p>
+    The application is structured to follow Express.js best practices and the Model-View-Controller (MVC) architecture. The application is scaffolded using Express-Generator and it utilizes the EJS View Engine. Data resources have separate model, view, controller, and router files to isolate CRUD operations for each data resource. Isolating data resources in this manner is good practice because it allows developers to quickly and consistently identify which files to visit while troubleshooting issues and when adding new features for existing data resources. Utilizing this architecture makes this application maintainable and feature-scalable moving forward.
+</p>
+
+## Authentication and Authorization
+<p>
+    This application utilizes OAuth 2.0 - Google Strategy and Passport.js for user authentication. Users can log in using their Google account to access the features of this application. Once a user is logged in, they are authorized to create, read, update, and delete job application data associated with their user account. Users will not be able to view any data created by other users. 
 </p>
 
 ## Technologies Used
 <p>
-    Technologies used in this project: HTML5, CSS3, Bootstrap, JavaScript, Node.js, Express.js, MongoDB, Mongoose, and OAuth2 (Google Strategy).
+    Technologies used in this project: HTML5, CSS3, Bootstrap, JavaScript, Node.js, Express.js, EJS View Engine, MongoDB, Mongoose, and OAuth 2.0 (Google Strategy).
 </p>
 
 # Getting Started
 
-### Trello Board Link https://trello.com/b/7QVUerin/job-app-tracker-ga-project-2
-### Application Link https://job-application-tracker-et.herokuapp.com/
+### Project Planning Board: https://trello.com/b/7QVUerin/job-app-tracker-ga-project-2
+### Application: https://job-application-tracker-et.herokuapp.com/
 <p>
-    To get started, click on the above link and log in. The application's authorization system is managed by OAuth using the Google OAuth2 strategy. 
+    To get started, click on the application link above and log in. The application's authorization system is managed by OAuth using the Google OAuth2 strategy. 
 </p>
 
 <img src='./img/home.png' width='1000px'>
 <br></br>
 
 <p>
-    Once logged in, the user will be able to create and view job applications. 
+    Once logged in, the user will redirected to the job app index page, which lists out all the user's job applications. From this screen, the user is able to view and delete job applications. 
 </p>
 
 <img src='./img/jobindex1.png' width='1000px'>
-<img src='./img/jobindex2.png' width='1000px'>
 <br></br>
 
 <p>
@@ -37,7 +46,7 @@
 <br></br>
 
 <p>
-    Once a new app is added, the user can view details for that specific job app. On this page, the user can view the job details, add a link to the resume and cover letter that was submitted, add recruiter contact information, and add and update tasks.
+    Once a new app is added, the user can view details for that specific job app. The user can navigate to the show (details) page for a specific job application through the "details" links on the job application index page. On the show page, the user can view the job details, add a link to the resume and cover letter that was submitted, add recruiter contact information, and add and update tasks.
 </p>
 
 <img src='./img/showjobapp.png' width='1000px'>
